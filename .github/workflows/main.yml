@@ -36,7 +36,7 @@ jobs:
               //ref: 'main',
             //});
             
-            rest.pulls.checkIfMerged({
+            github.rest.pulls.checkIfMerged({
               owner: context.repo.owner,
               repo: '${{ matrix.integration }}',
               pull_number: 48,
