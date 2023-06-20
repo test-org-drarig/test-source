@@ -29,18 +29,18 @@ jobs:
         with:
           github-token: ${{ secrets.TEST_SECRET }}
           script: |
-            //github.rest.actions.createWorkflowDispatch({
-              //owner: context.repo.owner,
-              //repo: '${{ matrix.integration }}',
-              //workflow_id: 'bump-datadog-ci.yml',
-              //ref: 'main',
-            //});
-            
-            const result = await github.rest.pulls.checkIfMerged({
+            github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: '${{ matrix.integration }}',
-              pull_number: 48,
+              workflow_id: 'bump-datadog-ci.yml',
+              ref: 'main',
             });
             
-            console.log(result)
+            //const result = await github.rest.pulls.checkIfMerged({
+            //  owner: context.repo.owner,
+            //  repo: '${{ matrix.integration }}',
+            //  pull_number: 48,
+            //});
+            
+            //console.log(result)
 
