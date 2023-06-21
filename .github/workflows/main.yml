@@ -24,10 +24,12 @@ jobs:
         with:
           app_id: ${{ secrets.RELEASE_AUTOMATION_GITHUB_APP_ID }}
           private_key: ${{ secrets.RELEASE_AUTOMATION_GITHUB_APP_PRIVATE_KEY }}
+          repository: test-org-drarig/test-github-action
       - name: Create bump datadog-ci PR
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.TEST_SECRET }}
+          # github-token: ${{ secrets.TEST_SECRET }}
+          github-token: ${{ steps.get-token.outputs.token }}
           script: |
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
@@ -35,12 +37,3 @@ jobs:
               workflow_id: 'bump-datadog-ci.yml',
               ref: 'main',
             });
-            
-            //const result = await github.rest.pulls.checkIfMerged({
-            //  owner: context.repo.owner,
-            //  repo: '${{ matrix.integration }}',
-            //  pull_number: 48,
-            //});
-            
-            //console.log(result)
-
