@@ -24,12 +24,12 @@ jobs:
         with:
           app_id: ${{ secrets.RELEASE_AUTOMATION_GITHUB_APP_ID }}
           private_key: ${{ secrets.RELEASE_AUTOMATION_GITHUB_APP_PRIVATE_KEY }}
-          repository: test-org-drarig/test-github-action
+          # repository: test-org-drarig/test-github-action
       - name: Create bump datadog-ci PR
         uses: actions/github-script@v6
         with:
-          # github-token: ${{ secrets.TEST_SECRET }}
-          github-token: ${{ steps.get-token.outputs.token }}
+          github-token: ${{ secrets.TEST_SECRET }}
+          # github-token: ${{ steps.get-token.outputs.token }}
           script: |
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
